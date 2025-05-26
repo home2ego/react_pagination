@@ -23,7 +23,7 @@ export const App: React.FC = () => {
     }
 
     setSearchParams(params);
-  }, [searchParams]);
+  }, [searchParams, setSearchParams]);
 
   const currentPage = +(searchParams.get('page') || INITIAL_PAGE);
   const perPage = +(searchParams.get('perPage') || INITIAL_PER_PAGE);
