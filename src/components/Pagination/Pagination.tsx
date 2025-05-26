@@ -15,6 +15,7 @@ export const Pagination = () => {
 
   const getSearchPage = (page: number) => {
     const params = new URLSearchParams(searchParams);
+
     params.set('page', page.toString());
 
     return { search: params.toString() };

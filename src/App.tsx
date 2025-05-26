@@ -23,13 +23,14 @@ export const App: React.FC = () => {
     }
 
     setSearchParams(params);
-  }, []);
+  }, [searchParams]);
 
   const currentPage = +(searchParams.get('page') || INITIAL_PAGE);
   const perPage = +(searchParams.get('perPage') || INITIAL_PER_PAGE);
 
   const handlePerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const params = new URLSearchParams(searchParams);
+
     params.set('perPage', e.target.value);
     params.set('page', INITIAL_PAGE.toString());
 
