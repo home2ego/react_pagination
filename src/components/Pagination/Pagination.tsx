@@ -44,7 +44,7 @@ export const Pagination = () => {
             data-cy="pageLink"
             className="page-link"
             to={getSearchPage(page)}
-            aria-current={page === currentPage ? 'page' : null}
+            aria-current={page === currentPage ? 'page' : undefined}
           >
             {page}
           </Link>
