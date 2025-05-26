@@ -3,27 +3,12 @@ import { getNumbers } from './utils';
 import { Pagination } from './components/Pagination';
 import { INITIAL_PAGE, INITIAL_PER_PAGE, TOTAL_ITEMS } from './constants';
 import { useSearchParams } from 'react-router-dom';
-import { useEffect } from 'react';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const items = getNumbers(INITIAL_PAGE, TOTAL_ITEMS).map(n => `Item ${n}`);
 
 export const App: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-
-    if (!searchParams.has('page')) {
-      params.set('page', INITIAL_PAGE.toString());
-    }
-
-    if (!searchParams.has('perPage')) {
-      params.set('perPage', INITIAL_PER_PAGE.toString());
-    }
-
-    setSearchParams(params);
-  }, [searchParams, setSearchParams]);
 
   const currentPage = +(searchParams.get('page') || INITIAL_PAGE);
   const perPage = +(searchParams.get('perPage') || INITIAL_PER_PAGE);

@@ -1,10 +1,11 @@
 import cn from 'classnames';
 import { getNumbers } from '../../utils';
 import { INITIAL_PAGE, INITIAL_PER_PAGE, TOTAL_ITEMS } from '../../constants';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 
 export const Pagination = () => {
   const [searchParams] = useSearchParams();
+  const { search } = useLocation();
 
   const currentPage = +(searchParams.get('page') || INITIAL_PAGE);
   const perPage = +(searchParams.get('perPage') || INITIAL_PER_PAGE);
@@ -27,11 +28,7 @@ export const Pagination = () => {
         <Link
           data-cy="prevLink"
           className="page-link"
-          to={
-            !isFirstPage
-              ? getSearchPage(currentPage - 1)
-              : { search: searchParams.toString() }
-          }
+          to={!isFirstPage ? getSearchPage(currentPage - 1) : { search }}
           aria-disabled={isFirstPage}
         >
           «
@@ -47,7 +44,7 @@ export const Pagination = () => {
             data-cy="pageLink"
             className="page-link"
             to={getSearchPage(page)}
-            aria-current={page === currentPage ? 'page' : undefined}
+            aria-current={page === currentPage ? 'page' : null}
           >
             {page}
           </Link>
@@ -58,11 +55,7 @@ export const Pagination = () => {
         <Link
           data-cy="nextLink"
           className="page-link"
-          to={
-            !isLastPage
-              ? getSearchPage(currentPage + 1)
-              : { search: searchParams.toString() }
-          }
+          to={!isLastPage ? getSearchPage(currentPage + 1) : { search }}
           aria-disabled={isLastPage}
         >
           »
